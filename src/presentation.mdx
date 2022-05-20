@@ -250,8 +250,7 @@ gem "sqlite3", "~> 1.4"
   - Add menu options for viewing all of a dog's walks or feedings.
   - Add `list_walks_for_dog` method that prompts user to choose a dog and then lists that dogs walks after the choice is made.
   - Add `list_feedings_for_dog` method that prompts user to choose a dog and then lists that dogs feedings after the choice is made.
-  - Because both of these methods require the user to choose a dog, and we've also needed that functionality a couple of times before when finding a dog to feed or walk, we can pull this functionality out into a separate method now (because we're doing it more than 3 times)
-  - The method `prompt_user_to_choose_dog` will print the numbered list of dogs, ask the user for their choice and return the Dog instance corresponding to their choice. Because we have one place we're doing this, we can also add in some error handling. If the user types in something that isn't "exit" or a valid number choice, we can show them an error message and ask them to choose again.
+  
 
 <Note>
 
@@ -259,7 +258,7 @@ gem "sqlite3", "~> 1.4"
 
 ----
 ----
-----
+---- 
 ----
 ----
 ----
@@ -286,16 +285,16 @@ gem "sqlite3", "~> 1.4"
 
 
 <TerminalCommand>
-./bin/run
+bundle exec ./bin/run
 </TerminalCommand>
 
 - This time we also have a `Rakefile` that contains information about the tasks that we're going to be able to run, one if which is `console`. This will load up our code and start a pry session allowing us to get interactive feedback by running:
 
 <TerminalCommand>
-rake console
+bundle exec rake console
 </TerminalCommand>
 
-This will replace the need to run `./bin/run` and then type in `debug` to access a pry session.
+This will replace the need to run `bundle exec ./bin/console` 
 <Note>
 
 
@@ -513,16 +512,16 @@ class CreateDogs < ActiveRecord::Migration[6.1]
   def change
     # describe the change we're making to our database
     create_table :dogs do |t|
-      puts t.inspect
+      puts t.class
       t.string :name
       t.string :age
       t.string :breed
-      t.string :favorite_treats
+      t.string :image_url
     end
   end
 end
 ```
-
+#### Questions
 <Step>
 
 - Do we need to add an id column or is it added for us?
