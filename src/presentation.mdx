@@ -514,7 +514,7 @@ class CreateDogs < ActiveRecord::Migration[6.1]
     create_table :dogs do |t|
       puts t.class
       t.string :name
-      t.string :age
+      t.datetime :birthdate
       t.string :breed
       t.string :image_url
     end
